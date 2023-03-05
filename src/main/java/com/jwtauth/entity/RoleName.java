@@ -1,4 +1,4 @@
-package com.jwtauth.entiry;
+package com.jwtauth.entity;
 
 public enum RoleName {
 	USER, ADMIN, MANAGER

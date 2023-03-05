@@ -45,14 +45,13 @@ public class AuthController {
 
 	@PostMapping("/sendOTP")
 	public ResponseEntity<String> sendOTP(@Valid @RequestBody LoginDTO login) {
-		try {
-			otpMailService.sendOTPToEmail(login.getUsername());
-		} catch (MessagingException e) {
-			log.error("Error sending otp via mail {}", e.getMessage());
-			e.printStackTrace();
-			ResponseEntity.internalServerError();
+		boolean result = otpMailService.sendOTPToEmail(login.getUsername());
+		if (Boolean.TRUE.equals(result)) {
+			return ResponseEntity.ok("OTP Sent successfully");
+		} else {
+			return ResponseEntity.ok("Unable to sent otp");
 		}
-		return ResponseEntity.ok("OTP Sent successfully");
+
 	}
 
 	@PostMapping("/validateOTP")

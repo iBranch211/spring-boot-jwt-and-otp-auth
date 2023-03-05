@@ -1,7 +1,7 @@
 package com.jwtauth.mapper;
 
 import com.jwtauth.dto.EmployeeDTO;
-import com.jwtauth.entiry.Employee;
+import com.jwtauth.entity.Employee;
 
 public class EmployeeMapper {
 
@@ -20,6 +20,7 @@ public class EmployeeMapper {
 		emp.setLastName(empdto.getLastName());
 		emp.setJob(empdto.getJob());
 		emp.setSalary(empdto.getSalary());
+		emp.setEmail(empdto.getEmail());
 		return emp;
 	}
 }

@@ -1,4 +1,4 @@
-package com.jwtauth.entiry;
+package com.jwtauth.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

@@ -1,4 +1,4 @@
-package com.jwtauth.entiry;
+package com.jwtauth.entity;
 import java.util.List;
 
 import javax.persistence.Entity;

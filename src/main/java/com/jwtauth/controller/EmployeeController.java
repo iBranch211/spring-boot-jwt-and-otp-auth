@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jwtauth.dto.EmployeeDTO;
-import com.jwtauth.entiry.Employee;
+import com.jwtauth.entity.Employee;
+import com.jwtauth.event.NewEmployeeEvent;
 import com.jwtauth.exception.EmployeeNotFoundException;
 import com.jwtauth.mapper.EmployeeMapper;
 import com.jwtauth.repository.EmployeeRepository;
@@ -33,6 +35,9 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
+
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@GetMapping(value = "/employees")
 	List<Employee> findAll() {
@@ -54,6 +59,10 @@ public class EmployeeController {
 		Employee addedemp = employeeRepository.save(emp);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(addedemp.getId())
 				.toUri();
+
+		NewEmployeeEvent employeeEvent = new NewEmployeeEvent(this, addedemp);
+		applicationEventPublisher.publishEvent(employeeEvent);
+
 		return ResponseEntity.created(location).build();
 	}
 

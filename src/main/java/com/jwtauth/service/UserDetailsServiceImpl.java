@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.jwtauth.entiry.User;
+import com.jwtauth.entity.User;
 import com.jwtauth.mapper.UserMapper;
 import com.jwtauth.repository.UserRepository;
 

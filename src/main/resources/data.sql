@@ -48,6 +48,7 @@ CREATE TABLE employees (
   first_name VARCHAR(250) NOT NULL,
   last_name VARCHAR(250) NOT NULL,
   job VARCHAR(250) NOT NULL,
+  email VARCHAR(250),
   salary DECIMAL(9,2) NOT NULL
 );
 

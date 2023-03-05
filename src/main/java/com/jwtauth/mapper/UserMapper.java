@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.jwtauth.dto.UserPrincipal;
-import com.jwtauth.entiry.User;
+import com.jwtauth.entity.User;
 
 public class UserMapper {
 	
