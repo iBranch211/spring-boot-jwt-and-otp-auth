@@ -13,7 +13,7 @@ CREATE TABLE users (
 INSERT INTO users (username, password, enabled) VALUES
   ('admin', '$2a$10$e6H1Jgrft/scpmpzbMFO0uqF1gxqop73l5wOlwF30Aem6Tty1nI2G', true),
   ('azhwani', '$2a$10$kWWOnNOiToOxcIQ7UJ.cB.XFAflYvMS5BPASR1eqqojc6H9ELWUfC', true),
-  ('guest', '$2a$10$SNsPkXTh0ryc82.D2HRJqOcY8sYh/TPnJW8WLqrERWkOq01ViWaCq', true),
+  ('guest', '$2a$10$kWWOnNOiToOxcIQ7UJ.cB.XFAflYvMS5BPASR1eqqojc6H9ELWUfC', true),
   ('yojita@localhost.com', '', true);
 
 CREATE TABLE roles (

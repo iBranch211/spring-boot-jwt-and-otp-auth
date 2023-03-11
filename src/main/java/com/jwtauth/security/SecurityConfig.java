@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -45,12 +46,12 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.headers().frameOptions().sameOrigin().and().csrf().disable().authorizeRequests().antMatchers("/auth/**")
+		http.headers().frameOptions().sameOrigin().and().csrf().disable().authorizeRequests()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().and().authorizeRequests().antMatchers("/auth/**")
 				.permitAll().antMatchers("/protected/**").authenticated().and().exceptionHandling()
 				.authenticationEntryPoint((req, res, ex) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED,
 						"UNAUTHORIZED : " + ex.getMessage()))
 				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 		http.addFilterBefore(getJwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(new UsernamePasswordAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(new OTPAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
